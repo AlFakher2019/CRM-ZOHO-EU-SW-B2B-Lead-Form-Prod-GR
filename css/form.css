@@ -1604,3 +1604,9 @@ form{
 .zf-tempFrmWrapper .billing-check .zf-labelName{
 	margin-left: 10px !important;
 }
+ input.readonly-disabled {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    cursor: not-allowed !important;
+    border-color: #ced4da !important;
+  }
