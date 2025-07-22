@@ -27,7 +27,7 @@
   <body class="zf-backgroundBg">
     <!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
     <div class="zf-templateWidth">
-      <form
+     <form
             action='https://forms.zohopublic.eu/ookaportal/form/CreateaBusinessAccountDE1/formperma/uH9Oh8pP2C0bB47xew3flH2fBYaqhTz9QTe_xjQR5Ek/htmlRecords/submit'
             name='form' method='POST' onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();'
             accept-charset='UTF-8' enctype='multipart/form-data' id='form'>
@@ -76,15 +76,15 @@
             <!-- progress bar -->
             <ul id="progressbar">
               <li class="active" id="number1" data-step="1">
-                <strong style="text-transform: uppercase"
-                  >ALLGEMEINE INFO</strong
-                >
+                <strong style="text-transform: uppercase">ALLGEMEIN</strong>
               </li>
               <li id="number2" data-step="2">
                 <strong style="text-transform: uppercase">ADRESSE</strong>
               </li>
               <li id="number3" data-step="3">
-                <strong style="text-transform: uppercase">GESCHÄFTSDATEN</strong>
+                <strong style="text-transform: uppercase"
+                  >GESCHÄFTSDATEN</strong
+                >
               </li>
             </ul>
 
@@ -144,7 +144,7 @@
               </div>
               <div class="zf-tempFrmWrapper zf-large">
                 <label class="zf-labelName">
-                  E-Mail
+                  Email-Adresse
                   <em class="zf-important"> *</em>
                 </label>
                 <div class="zf-tempContDiv">
@@ -271,7 +271,8 @@
                   </div>
                   <div class="zfCol">
                     <div class="zf-tempFrmWrapper zf-large">
-                      <label class="zf-labelName"> Unternehmenstyp 
+                      <label class="zf-labelName">
+                        Unternehmenstyp
                         <em class="zf-important"> *</em>
                       </label>
                       <div class="zf-tempContDiv">
@@ -283,10 +284,18 @@
                           <option selected="true" value="">
                             Bitte auswählen
                           </option>
-                           <option value="GmbH">Gesellschaft mit beschränkter Haftung - GmbH</option>
-                           <option value="Einzelunternehmen">Einzelunternehmen - e.K./Einzelkaufmann</option>
-                           <option value="UG">Unternehmergesellschaft – UG</option>
-                           <option value="Sonstiges">Sonstiges - GbR, KG, OHG, AG, usw.</option>
+                          <option value="GmbH">
+                            Gesellschaft mit beschränkter Haftung - GmbH
+                          </option>
+                          <option value="Einzelunternehmen">
+                            Einzelunternehmen - e.K./Einzelkaufmann
+                          </option>
+                          <option value="UG">
+                            Unternehmergesellschaft – UG
+                          </option>
+                          <option value="Sonstiges">
+                            Sonstiges - GbR, KG, OHG, AG, usw.
+                          </option>
                         </select>
                         <p
                           id="Dropdown_error"
@@ -310,7 +319,8 @@
                     id="DecisionBox1"
                     name="DecisionBox1"
                   /><label for="DecisionBox1" class="zf-labelName">
-                    Ja, ich möchte über kostenlose Muster und exklusive Angebote informiert werden.
+                    Ja, ich möchte über kostenlose Muster und exklusive Angebote
+                    informiert werden.
                   </label>
                   <p
                     id="DecisionBox1_error"
@@ -349,7 +359,7 @@
                 onclick="zf_ValidateAndSubmit()"
                 name="Next"
               >
-                Weiter
+                WEITER
               </button>
               <div class="zf-tempFrmWrapper zf-note">
                 <label class="zf-descFld">
@@ -377,35 +387,33 @@
             <div class="zfgrid_Wrapper">
               <div class="zftwoColumn zfMultiColGrid">
                 <div class="zfCol">
-                    <div class="zf-tempFrmWrapper zf-large">
-                      <label class="zf-labelName">
-                        Adresstyp
-                        <em class="zf-important"> *</em>
-                      </label>
-                      <div class="zf-tempContDiv">
-                        <select
-                          class="zf-form-sBox"
-                          name="Dropdown1"
-                          checktype="c1"
-                        >
-                          <option selected="true" value="-Select-">
-                            Bitte auswählen
-                          </option>
-                          <option value="Hauptadresse">Hauptadresse</option>
-                          <option value="Filialadresse">
-                            Filialadresse
-                          </option>
-                        </select>
-                        <p
-                          id="Dropdown1_error"
-                          class="zf-errorMessage"
-                          style="display: none"
-                        >
-                          Bitte geben Sie korrekte Daten ein
-                        </p>
-                      </div>
-                      <div class="zf-clearBoth"></div>
+                  <div class="zf-tempFrmWrapper zf-large">
+                    <label class="zf-labelName">
+                      Adresstyp
+                      <em class="zf-important"> *</em>
+                    </label>
+                    <div class="zf-tempContDiv">
+                      <select
+                        class="zf-form-sBox"
+                        name="Dropdown1"
+                        checktype="c1"
+                      >
+                        <option selected="true" value="-Select-">
+                          Bitte auswählen
+                        </option>
+                        <option value="Wohnen">Hauptadresse</option>
+                        <option value="Geschäftsstandort">Filialadresse</option>
+                      </select>
+                      <p
+                        id="Dropdown1_error"
+                        class="zf-errorMessage"
+                        style="display: none"
+                      >
+                        Bitte geben Sie korrekte Daten ein
+                      </p>
                     </div>
+                    <div class="zf-clearBoth"></div>
+                  </div>
                   <div class="zf-tempFrmWrapper zf-large">
                     <label class="zf-labelName">
                       Ort
@@ -541,7 +549,7 @@
                     <div class="zf-clearBoth"></div>
                   </div>
                   <div class="zf-tempFrmWrapper zf-large">
-                    <label class="zf-labelName">Zusatz</label>
+                    <label class="zf-labelName"> Zusatz </label>
                     <div class="zf-tempContDiv">
                       <span>
                         <input
@@ -610,7 +618,7 @@
                         id="DecisionBox"
                         name="DecisionBox"
                       /><label for="DecisionBox" class="zf-labelName">
-                        Wie Rechnungsadresse
+                        wie Rechnungsadresse
                       </label>
                       <p
                         id="DecisionBox_error"
@@ -644,11 +652,10 @@
                           <option selected="true" value="-Select-">
                             Bitte auswählen
                           </option>
-                          <option value="Hauptadresse">Hauptadresse</option>
-                          <option value="Filialadresse">
+                          <option value="Wohnen">Hauptadresse</option>
+                          <option value="Geschäftsstandort">
                             Filialadresse
                           </option>
-                          
                         </select>
                         <p
                           id="Dropdown2_error"
@@ -906,7 +913,7 @@
             </div>
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
-                Datei-Upload
+                Upload
                 <em class="zf-important">*</em>
               </label>
               <div class="zf-tempContDiv">
@@ -923,14 +930,16 @@
               <div class="zf-clearBoth"></div>
             </div>
             <div class="zf-tempFrmWrapper zf-section">
-              <h2>Details zum Gewerbes</h2>
+              <h2>Details zum Gewerbe</h2>
               <p></p>
             </div>
             <div class="zfgrid_Wrapper">
               <div class="zftwoColumn zfMultiColGrid">
                 <div class="zfCol">
                   <div class="zf-tempFrmWrapper zf-large">
-                    <label class="zf-labelName"> Gewerbe- oder Handelsregisternummer </label>
+                    <label class="zf-labelName">
+                      Gewerbe- oder Handelsregisternummer
+                    </label>
                     <div class="zf-tempContDiv">
                       <span>
                         <input
@@ -959,7 +968,7 @@
             </div>
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
-                Datei-Upload
+                Upload
                 <em class="zf-important">*</em>
               </label>
               <div class="zf-tempContDiv">
@@ -976,7 +985,7 @@
               <div class="zf-clearBoth"></div>
             </div>
             <div class="zf-fmFooter">
-              <a type="button" class="prev">Zurück</a>
+              <a type="button" class="prev">Previous</a>
 
               <button type="submit" class="next" name="submit" id="submitBtn">
                 Absenden
@@ -987,7 +996,7 @@
       </form>
     </div>
 
-        <script type="text/javascript">
+         <script type="text/javascript">
       var dateAndMonthRegexFormateArray =
         zf_SetDateAndMonthRegexBasedOnDateFormate("dd-MMM-yyyy");
       var zf_DateRegex = new RegExp(dateAndMonthRegexFormateArray[0]);
@@ -998,7 +1007,6 @@
         "Email",
         "SingleLine14",
         "SingleLine",
-       "DecisionBox2",
         "Dropdown",
         "Dropdown1",
         "SingleLine2",
@@ -1070,47 +1078,42 @@
           zip: document.forms.form["SingleLine13"],
         };
 
-        /// state hide
+        // province, state hide
 
         function handleStateReadonly(countryInput, stateInput, stateFieldId) {
-         const country = countryInput.value.trim().toLowerCase();
-  
-         if (country === "germany" || country === "deutschland") {
-          stateInput.readOnly = true;
+          const country = countryInput.value.trim().toLowerCase();
+
+          if (country === "germany" || country === "deutschland") {
+            stateInput.readOnly = true;
             stateInput.value = "N/A";
-             stateInput.classList.add("readonly-disabled"); // disabled style
+            stateInput.classList.add("readonly-disabled"); // disabled style
 
+            const index = zf_MandArray.indexOf(stateFieldId);
+            if (index !== -1) zf_MandArray.splice(index, 1);
+          } else {
+            stateInput.readOnly = false;
+            stateInput.value = "";
+            stateInput.classList.remove("readonly-disabled");
 
-             const index = zf_MandArray.indexOf(stateFieldId);
-             if (index !== -1) zf_MandArray.splice(index, 1);
-          }  else {
-           stateInput.readOnly = false;
-           stateInput.value = "";
-           stateInput.classList.remove("readonly-disabled");
+            if (!zf_MandArray.includes(stateFieldId)) {
+              zf_MandArray.push(stateFieldId);
+            }
+          }
+        }
 
-          if (!zf_MandArray.includes(stateFieldId)) {
-          zf_MandArray.push(stateFieldId);
-           }
-  }
-}
+        // live input events
+        billing.country.addEventListener("input", () => {
+          handleStateReadonly(billing.country, billing.state, "SingleLine6");
+        });
+        shipping.country.addEventListener("input", () => {
+          handleStateReadonly(shipping.country, shipping.state, "SingleLine12");
+        });
 
-// live input events
-     billing.country.addEventListener("input", () => {
-      handleStateReadonly(billing.country, billing.state, "SingleLine6");
-       });
-          shipping.country.addEventListener("input", () => {
-  handleStateReadonly(shipping.country, shipping.state, "SingleLine12");
-    });
+        //  on load
+        handleStateReadonly(billing.country, billing.state, "SingleLine6");
+        handleStateReadonly(shipping.country, shipping.state, "SingleLine12");
 
-  //  on load
-   handleStateReadonly(billing.country, billing.state, "SingleLine6");
-   handleStateReadonly(shipping.country, shipping.state, "SingleLine12");
-
-
-
-
-                /// state hide end
-
+        /// state hide end
 
         function syncShippingWithBilling() {
           if (document.getElementById("DecisionBox").checked) {
@@ -1274,13 +1277,7 @@
           fileInput.files = dt.files;
           fileInput.dispatchEvent(new Event("change"));
         }
-
-
-
-        //if enterd germany then state will be disabled
-
       });
     </script>
   </body>
 </html>
-
