@@ -4,7 +4,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font: inherit;
+	font: 'Lato';
 	vertical-align: baseline;
 }
 
@@ -106,7 +106,7 @@ ol, ul {
     -moz-border-radius: 2px;
     border-radius: 4px;
     padding: 5px;
-    font-size: 15px;
+    font-size: 14px;
     color: rgb(37, 44, 62);
     padding: 11px 10px 10px 10px;
 	height: 40px;
@@ -227,7 +227,7 @@ ol, ul {
 	background: #fff;
     border: 1px solid rgba(184, 187, 211, 1);
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     height: 40px;
     transition: 0.3s;
     vertical-align: middle;
@@ -260,8 +260,7 @@ ol, ul {
     font-weight: 500;
 	}
 .zf-phone .zf-tempContDiv label, .zf-date .zf-tempContDiv label, .zf-time .zf-tempContDiv label, .zf-address .zf-tempContDiv label, .zf-name .zf-tempContDiv span label {
-	color: #252c3e;
-    opacity: .8;
+	color: #000000;
 }
 .zf-phone .zf-tempContDiv span label {
 	display: block;
@@ -280,7 +279,7 @@ ol, ul {
 	display: inline-block;
     font-size: 15px;
     font-weight: 600;
-    color: #252c3e;
+    color: #000000;
     margin-right: 8px;
 	float: left;
     margin-top: 10px;
@@ -1530,14 +1529,14 @@ width: 223px;
 
 }
 .next{
-  font-family: "Poppins", serif;
+ 
   font-size: 16px;
   margin: 20px 0px;
   margin-left: 0;
   padding: 13px 36px;
   font-weight: 600;
-  text-transform: uppercase;
-  width: 84%;
+  
+  width: 83%;
   border-radius: 40px;
   color: #fff;
   border: 0px solid;
@@ -1561,52 +1560,19 @@ form{
 	cursor: pointer;
 }
 
-/* benefits container */
-.account-benefits-box {
-  background-color: #F7F6F5;
-  border-radius: 8px;
-  padding: 20px 30px;
-  margin-bottom: 30px;
-  font-family: sans-serif;
-  margin-left: 30px;
-  margin-right: 30px;
-}
 
-.account-benefits-box h3 {
-  color: #101114;
-  margin-top: 0;
-  font-weight: 600;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-.benefits-list {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.benefits-list ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.benefits-list li {
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  color: #101114;
-}
 .billing-check{
 	display: flex;
 }
 .zf-tempFrmWrapper .billing-check .zf-labelName{
 	margin-left: 10px !important;
 }
+
  input.readonly-disabled {
     background-color: #e9ecef !important;
     color: #6c757d !important;
     cursor: not-allowed !important;
     border-color: #ced4da !important;
   }
+  
+

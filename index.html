@@ -50,27 +50,13 @@
           <ul class="zf-tempHeadBdr">
             <li class="zf-tempHeadContBdr">
               <h2 class="zf-frmTitle">
-                <em>Geschäftskonto erstellen DE</em>
+                
               </h2>
               <p class="zf-frmDesc"></p>
               <div class="zf-clearBoth"></div>
             </li>
             <!-- benefits tab -->
-            <div class="account-benefits-box" id="benefits-box">
-              <h3>Vorteile der Kontoerstellung</h3>
-              <div class="benefits-list">
-                <ul>
-                  <li>✔ Schnelle Genehmigungen, innerhalb von 1-2 Werktagen</li>
-                  <li>✔ Zugang zu Geschäftspreisen und Angeboten</li>
-                  <li>✔ Schneller, sicherer und bequemer Checkout</li>
-                </ul>
-                <ul>
-                  <li>✔ Neue Produktbenachrichtigungen + Experten-Tipps</li>
-                  <li>✔ Treue- und Empfehlungsprogramme</li>
-                  <li>✔ Experten-Kundenservice</li>
-                </ul>
-              </div>
-            </div>
+           
           </ul>
           <div class="zf-subContWrap zf-topAlign">
             <!-- progress bar -->
@@ -104,13 +90,14 @@
                 <p></p>
               </div>
               <div class="zf-tempFrmWrapper zf-name zf-namelarge">
-                <label class="zf-labelName">
-                  Name
-                  <em class="zf-important"> *</em>
-                </label>
+                
                 <div class="zf-tempContDiv zf-twoType">
                   <div class="zf-nameWrapper">
                     <span>
+                      <label class="zf-labelName">
+                      Vorname
+                  <em class="zf-important"> *</em>
+                </label>
                       <input
                         type="text"
                         maxlength="255"
@@ -118,9 +105,13 @@
                         fieldType="7"
                         placeholder=""
                       />
-                      <label>Vorname</label>
+                     
                     </span>
                     <span>
+                     <label class="zf-labelName">
+                      Nachname
+                     <em class="zf-important"> *</em>
+                     </label>
                       <input
                         type="text"
                         maxlength="255"
@@ -128,7 +119,7 @@
                         fieldType="7"
                         placeholder=""
                       />
-                      <label>Nachname</label>
+                     
                     </span>
                     <div class="zf-clearBoth"></div>
                   </div>
@@ -1220,10 +1211,7 @@
           progressItems.forEach((item, i) => {
             item.classList.toggle("active", i <= index);
           });
-          const benefitsBox = document.getElementById("benefits-box");
-          if (benefitsBox) {
-            benefitsBox.style.display = index === 0 ? "block" : "none";
-          }
+          
         }
         // next button functionality
         document.querySelectorAll(".next").forEach((btn) => {
