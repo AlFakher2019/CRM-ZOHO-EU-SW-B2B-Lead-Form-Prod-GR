@@ -27,7 +27,7 @@ input, input[type="text"], input[type="search"], isindex, textarea, button {
 img, a {
 	border:0px;
 	outline:none;
-	color:#3a6cae;
+	color:#d23500;
 	text-decoration:none;
 }
 img, a:hover {
@@ -1023,7 +1023,7 @@ ol, ul {
 }
 .zf-descFld a { 
 	text-decoration:underline;
-	color: #252c3e;
+	color: #d23500;
 }
 .zf-descFld em{ font-style:italic;}
 .zf-descFld b{ font-weight:bold;}
