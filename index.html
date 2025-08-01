@@ -1,6 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Geschäftskonto erstellen DE</title>
     <link href="css/form.css" rel="stylesheet" type="text/css" />
     <link
@@ -18,16 +19,13 @@
       #step1 .prev {
         visibility: hidden;
       }
-      #step1 .next {
-        width: 91%;
-        margin-left: 40px;
-      }
+     
     </style>
   </head>
   <body class="zf-backgroundBg">
     <!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
     <div class="zf-templateWidth">
-     <form
+      <form
             action='https://forms.zohopublic.eu/ookaportal/form/CreateaBusinessAccountDE1/formperma/uH9Oh8pP2C0bB47xew3flH2fBYaqhTz9QTe_xjQR5Ek/htmlRecords/submit'
             name='form' method='POST' onSubmit='javascript:document.charset="UTF-8"; return zf_ValidateAndSubmit();'
             accept-charset='UTF-8' enctype='multipart/form-data' id='form'>
@@ -50,13 +48,13 @@
           <ul class="zf-tempHeadBdr">
             <li class="zf-tempHeadContBdr">
               <h2 class="zf-frmTitle">
-                
+               
               </h2>
               <p class="zf-frmDesc"></p>
               <div class="zf-clearBoth"></div>
             </li>
             <!-- benefits tab -->
-           
+            
           </ul>
           <div class="zf-subContWrap zf-topAlign">
             <!-- progress bar -->
@@ -91,13 +89,13 @@
               </div>
               <div class="zf-tempFrmWrapper zf-name zf-namelarge">
                 
-                <div class="zf-tempContDiv zf-twoType">
+                <div class="zf-tempContDiv zf-twoType zf-flex">
                   <div class="zf-nameWrapper">
                     <span>
                       <label class="zf-labelName">
-                      Vorname
-                  <em class="zf-important"> *</em>
-                </label>
+                            Vorname
+                       <em class="zf-important"> *</em>
+                       </label>
                       <input
                         type="text"
                         maxlength="255"
@@ -105,13 +103,13 @@
                         fieldType="7"
                         placeholder=""
                       />
-                     
+                      
                     </span>
                     <span>
-                     <label class="zf-labelName">
-                      Nachname
-                     <em class="zf-important"> *</em>
-                     </label>
+                      <label class="zf-labelName">
+                            Nachname
+                       <em class="zf-important"> *</em>
+                       </label>
                       <input
                         type="text"
                         maxlength="255"
@@ -119,18 +117,19 @@
                         fieldType="7"
                         placeholder=""
                       />
-                     
+                      
                     </span>
                     <div class="zf-clearBoth"></div>
                   </div>
-                  <p
+                  
+                </div>
+                <p
                     id="Name_error"
                     class="zf-errorMessage"
                     style="display: none"
                   >
                     Bitte geben Sie korrekte Daten ein
                   </p>
-                </div>
                 <div class="zf-clearBoth"></div>
               </div>
               <div class="zf-tempFrmWrapper zf-large">
@@ -196,7 +195,6 @@
                     <div class="zf-tempFrmWrapper zf-large">
                       <label class="zf-labelName">
                         Festnetz
-                        <em class="zf-important"> </em>
                       </label>
                       <div class="zf-tempContDiv">
                         <span>
@@ -303,7 +301,7 @@
               </div>
 
               <div class="zf-tempFrmWrapper zf-decesion">
-                <div class="zf-tempContDiv">
+                <div class="zf-tempContDiv zf-check">
                   <input
                     type="checkbox"
                     checktype="c1"
@@ -324,19 +322,22 @@
                 <div class="zf-clearBoth"></div>
               </div>
               <div class="zf-tempFrmWrapper zf-decesion">
-                <div class="zf-tempContDiv">
+                <div class="zf-tempContDiv zf-check">
                   <input
                     type="checkbox"
                     checktype="c1"
                     id="DecisionBox2"
                     name="DecisionBox2"
-                  /><label for="DecisionBox2" class="zf-labelName">
+                  />
+                  
+                   <label for="DecisionBox2" class="zf-labelName">
                        Ich stimme den 
                        <a href="https://www.shisha-world.com/content/agb" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">AGBs</a>
                                   und
                           <a href="https://www.shisha-world.com/content/datenschutz" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Datenschutzbestimmungen</a>
                            zu.
                       </label>
+                        
                   <p
                     id="DecisionBox2_error"
                     class="zf-errorMessage"
@@ -360,10 +361,11 @@
                 <label class="zf-descFld">
                   <div class="align-center" style="text-align: center">
                     Sie haben bereits ein Konto?
-                    <a href="https://preprod.shisha-world.com/login" target="_blank" rel="noopener noreferrer"
+                    <a href="https://b2b.shisha-world.com/customer/account/login/" target="_blank" rel="noopener noreferrer"
                       >
-                        Anmelden</a>
-                    <br />
+                        Anmelden
+                     </a>
+                     <br />
                   </div>
                 </label>
                 <div class="zf-clearBoth"></div>
@@ -978,10 +980,10 @@
 
               <div class="zf-clearBoth"></div>
             </div>
-            <div class="zf-fmFooter">
+            <div class="footerbtns">
               <a type="button" class="prev">Zurück</a>
 
-              <button type="submit" class="next" name="submit" id="submitBtn">
+              <button type="submit" class="next" name="submit" id="submitBtn" disabled>
                 Absenden
               </button>
             </div>
@@ -990,7 +992,7 @@
       </form>
     </div>
 
-         <script type="text/javascript">
+    <script type="text/javascript">
       var dateAndMonthRegexFormateArray =
         zf_SetDateAndMonthRegexBasedOnDateFormate("dd-MMM-yyyy");
       var zf_DateRegex = new RegExp(dateAndMonthRegexFormateArray[0]);
@@ -1016,6 +1018,7 @@
         "SingleLine13",
         "FileUpload",
         "FileUpload1",
+        "DecisionBox2",
       ];
       var zf_FieldArray = [
         "Name_First",
@@ -1036,6 +1039,7 @@
         "SingleLine5",
         "SingleLine7",
         "DecisionBox",
+        "DecisionBox2",
         "Dropdown2",
         "SingleLine9",
         "SingleLine10",
@@ -1214,7 +1218,10 @@
           progressItems.forEach((item, i) => {
             item.classList.toggle("active", i <= index);
           });
-          
+          const benefitsBox = document.getElementById("benefits-box");
+          if (benefitsBox) {
+            benefitsBox.style.display = index === 0 ? "block" : "none";
+          }
         }
         // next button functionality
         document.querySelectorAll(".next").forEach((btn) => {
@@ -1269,6 +1276,93 @@
           fileInput.dispatchEvent(new Event("change"));
         }
       });
+
+      // Prevent Enter key from submitting the form
+  document.querySelector("form").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      const type = e.target.type;
+      // allow Enter on textarea or submit button only
+      if (type !== "textarea" && type !== "submit" && type !== "button") {
+        e.preventDefault();
+      }
+    }
+  });
+
+
     </script>
+
+   <script>
+function moveZusatzBelowStreet(streetName, zusatzName) {
+  const streetInput = document.querySelector(`input[name="${streetName}"]`);
+  const zusatzInput = document.querySelector(`input[name="${zusatzName}"]`);
+  if (!streetInput || !zusatzInput) return;
+
+  const streetWrapper = streetInput.closest(".zf-tempFrmWrapper");
+  const zusatzWrapper = zusatzInput.closest(".zf-tempFrmWrapper");
+
+  if (
+    window.innerWidth <= 468 &&
+    streetWrapper &&
+    zusatzWrapper &&
+    streetWrapper !== zusatzWrapper &&
+    zusatzWrapper.previousElementSibling !== streetWrapper
+  ) {
+    streetWrapper.insertAdjacentElement("afterend", zusatzWrapper);
+  }
+}
+
+function applyZusatzPositioning() {
+  moveZusatzBelowStreet("SingleLine4", "SingleLine5");     // Billing
+  moveZusatzBelowStreet("SingleLine10", "SingleLine11");   // Shipping
+}
+
+document.addEventListener("DOMContentLoaded", applyZusatzPositioning);
+window.addEventListener("resize", applyZusatzPositioning);
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const submitBtn = document.getElementById("submitBtn");
+  const requiredFields = [
+    "FileUpload",      // Final step file input 1
+    "FileUpload1",     // Final step file input 2
+    // Add more required fields from final step if needed
+  ];
+
+  function checkRequiredFieldsFilled() {
+    return requiredFields.every(name => {
+      const field = document.querySelector(`[name="${name}"]`);
+      if (!field) return false;
+      if (field.type === "file") {
+        return field.files.length > 0;
+      } else if (field.type === "checkbox" || field.type === "radio") {
+        return field.checked;
+      } else {
+        return field.value.trim() !== "";
+      }
+    });
+  }
+
+  function updateSubmitButtonState() {
+    if (checkRequiredFieldsFilled()) {
+      submitBtn.disabled = false;
+    } else {
+      submitBtn.disabled = true;
+    }
+  }
+
+  // Initial check
+  updateSubmitButtonState();
+
+  requiredFields.forEach(name => {
+    const field = document.querySelector(`[name="${name}"]`);
+    if (field) {
+      field.addEventListener("input", updateSubmitButtonState);
+      field.addEventListener("change", updateSubmitButtonState);
+    }
+  });
+});
+</script>
+
   </body>
 </html>

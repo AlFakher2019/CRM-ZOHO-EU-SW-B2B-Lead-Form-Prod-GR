@@ -206,7 +206,7 @@ ol, ul {
 }
 
 .zf-tempFrmWrapper {
-	padding: 16px 40px 0;
+	padding: 16px 10px 0;
     margin: 0;
     box-sizing: border-box;
 }
@@ -461,8 +461,7 @@ ol, ul {
 .zf-tempContDiv input[type="checkbox"], .zf-tempContDiv input[type="radio"] {
 	display: block;
 	height: 13px;
-	margin: 4px 0 0;
-	padding: 0;
+	margin:  0 0;
 	width: 13px;
 	cursor: pointer;
 	
@@ -1217,7 +1216,7 @@ width: 223px;
 
 /* Grid Related Css Start Here */
 .zfgrid_Wrapper {
-	padding: 0 40px 0 40px;
+	padding: 0 10px 0 10px;
 	margin: 0;
 	box-sizing: border-box;
 }
@@ -1535,8 +1534,8 @@ width: 223px;
   margin-left: 0;
   padding: 13px 36px;
   font-weight: 600;
-  
-  width: 83%;
+
+  width: 100%;
   border-radius: 40px;
   color: #fff;
   border: 0px solid;
@@ -1549,7 +1548,7 @@ width: 223px;
   cursor: pointer;
 }
 form{
-	margin: 30px;
+	margin: 1px;
 }
 .prev{
 
@@ -1575,4 +1574,165 @@ form{
     border-color: #ced4da !important;
   }
   
+/* new css responsiveness */
 
+
+.zf-tempContDiv input,
+.zf-tempContDiv select,
+.zf-tempContDiv textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.zf-tempContDiv input[type="checkbox"],
+.zf-tempContDiv input[type="radio"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.zf-tempContDiv .zf-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.zf-tempContDiv .zf-check label {
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 2px;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.zf-errorMessage {
+  color: red;
+  font-size: 0.7rem;
+  display: block;
+  word-break: break-word;
+  line-height: 1.2;
+  max-width: 100%;
+  min-height: 18px; 
+}
+
+.zf-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.zf-flex > * {
+  flex: 1 1 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 468px) {
+
+	
+#progressbar{
+	scale: 0.9;
+}
+  .zf-templateWidth {
+    padding: 16px;
+  }
+
+  .zf-flex {
+    flex-direction: column;
+  }
+
+  .zf-flex > * {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin-bottom: 12px !important;
+  }
+
+  .zftwoColumn {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row !important;
+    gap: 0 !important;
+  }
+
+  .zftwoColumn .zfCol {
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .zftwoColumn .zfCol:nth-child(odd) {
+    order: 1;
+  }
+
+  .zftwoColumn .zfCol:nth-child(even) {
+    order: 2;
+  }
+
+  .zftwoColumn .zfCol > .zf-tempContDiv {
+    margin-bottom: 12px !important;
+  }
+
+  .zfMultiColGrid {
+    flex-direction: column !important;
+    display: flex !important;
+    gap: 16px;
+  }
+
+  .zfCol {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .zf-tempContDiv .zf-check {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .zf-submitColor {
+    width: 100% !important;
+    margin-top: 20px;
+  }
+
+  
+}
+
+@media (max-width: 468px) {
+  .zf-templateWidth,
+  .zf-tempContDiv {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .zf-tempContDiv {
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 468px) {
+  .footerbtns {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .next {
+    width: 100% !important;
+    margin: 20px auto !important;
+    display: block;
+    max-width: 99%;
+  }
+}
+button:disabled,
+.next:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
