@@ -1715,6 +1715,24 @@ form{
   .zf-tempContDiv {
     box-sizing: border-box;
   }
+  .zf-nameWrapper {
+    display: flex;
+    flex-direction: column; 
+    width: 100% !important;
+  }
+
+  .zf-nameWrapper span {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .zf-nameWrapper span label {
+    width: 100% !important;
+  }
+
+  .zf-nameWrapper input {
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 468px) {
