@@ -4,14 +4,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font: 'Lato';
+	
 	vertical-align: baseline;
 }
 
 body {
 	background-attachment: fixed;
 	color: #444444;
-	font-family:'Lato', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+	font-family: 'Poppins', sans-serif;
 	margin: 0 auto;
 }
 
@@ -101,7 +101,8 @@ ol, ul {
 
 .zf-tempContDiv input[type="text"], .zf-tempContDiv textarea, .zf-tempContDiv .zf-pdfTextArea {
 	background: #fff;
-    border: 1px solid rgba(184, 187, 211, 1);
+    border: 1px solid #9C9EA3;
+	font-family: 'Poppins', sans-serif;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 4px;
@@ -109,7 +110,7 @@ ol, ul {
     font-size: 14px;
     color: rgb(37, 44, 62);
     padding: 11px 10px 10px 10px;
-	height: 40px;
+	height: 55px;
 	transition: 0.3s;
 }
 .zf-tempContDiv input[type="text"]::placeholder, .zf-tempContDiv textarea::placeholder, .zf-tempContDiv .zf-pdfTextArea::placeholder {
@@ -225,10 +226,10 @@ ol, ul {
 .zf-form-sBox { 
 	padding: 9px 10px 10px 5px;
 	background: #fff;
-    border: 1px solid rgba(184, 187, 211, 1);
+    border: 1px solid #9C9EA3;
     border-radius: 4px;
     font-size: 14px;
-    height: 40px;
+    height: 55px;
     transition: 0.3s;
     vertical-align: middle;
     position: relative;
@@ -257,7 +258,7 @@ ol, ul {
     overflow: visible !important;
     word-break: break-all;
     padding: 8px 0px 0px 0px;
-    font-weight: 500;
+    font-weight: 400;
 	}
 .zf-phone .zf-tempContDiv label, .zf-date .zf-tempContDiv label, .zf-time .zf-tempContDiv label, .zf-address .zf-tempContDiv label, .zf-name .zf-tempContDiv span label {
 	color: #000000;
@@ -1714,24 +1715,6 @@ form{
 
   .zf-tempContDiv {
     box-sizing: border-box;
-  }
-  .zf-nameWrapper {
-    display: flex;
-    flex-direction: column; 
-    width: 100% !important;
-  }
-
-  .zf-nameWrapper span {
-    width: 100% !important;
-    margin-left: 0 !important;
-  }
-
-  .zf-nameWrapper span label {
-    width: 100% !important;
-  }
-
-  .zf-nameWrapper input {
-    width: 100% !important;
   }
 }
 
