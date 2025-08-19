@@ -497,26 +497,15 @@
                       Land
                       <em class="zf-important"> *</em>
                     </label>
-                    <div class="zf-tempContDiv">
-                      <span>
-                        <input
-                          type="text"
-                          name="SingleLine1"
-                          checktype="c1"
-                          value=""
-                          maxlength="255"
-                          fieldType="1"
-                          placeholder=""
-                        />
-                      </span>
-                      <p
-                        id="SingleLine1_error"
-                        class="zf-errorMessage"
-                        style="display: none"
-                      >
-                        Bitte geben Sie korrekte Daten ein
-                      </p>
-                    </div>
+                  <div class="zf-tempContDiv">
+                    <select class="zf-form-sBox" name="Dropdown4" checktype="c1">
+                      <option selected="true" value="-Select-">-Select-</option>
+                      <option value="DEU">Germany</option>
+                      <option value="AUT">Austria</option>
+                    </select>
+                    <p id="Dropdown4_error" class="zf-errorMessage" style="display:none;">
+                      Invalid value</p>
+                  </div>
                     <div class="zf-clearBoth"></div>
                   </div>
                   <div class="zf-tempFrmWrapper zf-large">
@@ -751,24 +740,13 @@
                         <em class="zf-important"> *</em>
                       </label>
                       <div class="zf-tempContDiv">
-                        <span>
-                          <input
-                            type="text"
-                            name="SingleLine8"
-                            checktype="c1"
-                            value=""
-                            maxlength="255"
-                            fieldType="1"
-                            placeholder=""
-                          />
-                        </span>
-                        <p
-                          id="SingleLine8_error"
-                          class="zf-errorMessage"
-                          style="display: none"
-                        >
-                          Bitte geben Sie korrekte Daten ein
-                        </p>
+                        <select class="zf-form-sBox" name="Dropdown5" checktype="c1">
+                          <option selected="true" value="-Select-">-Select-</option>
+                          <option value="DEU">DEU</option>
+                          <option value="AUT">AUT</option>
+                        </select>
+                        <p id="Dropdown5_error" class="zf-errorMessage" style="display:none;">
+                          Invalid value</p>
                       </div>
                       <div class="zf-clearBoth"></div>
                     </div>
@@ -909,7 +887,7 @@
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
                 Upload
-                <em class="zf-important">*</em>
+                <!-- <em class="zf-important">*</em> -->
               </label>
               <div class="zf-tempContDiv">
                 <input type="file" name="FileUpload" checktype="c1" />
@@ -964,7 +942,7 @@
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
                 Upload
-                <em class="zf-important">*</em>
+                <!-- <em class="zf-important">*</em> -->
               </label>
               <div class="zf-tempContDiv">
                 <input type="file" name="FileUpload1" checktype="c1" />
@@ -982,7 +960,7 @@
             <div class="footerbtns">
               <a type="button" class="prev">Zurück</a>
 
-              <button type="submit" class="next" name="submit" id="submitBtn" disabled>
+              <button type="submit" class="next" name="submit" id="submitBtn">
                 Absenden
               </button>
             </div>
@@ -1007,16 +985,15 @@
         "SingleLine2",
         "SingleLine4",
         "SingleLine6",
-        "SingleLine1",
+        "Dropdown4",
         "SingleLine7",
         "Dropdown2",
         "SingleLine9",
         "SingleLine10",
         "SingleLine12",
-        "SingleLine8",
+        "Dropdown5",
         "SingleLine13",
-        "FileUpload",
-        "FileUpload1",
+        
         "DecisionBox2",
       ];
       var zf_FieldArray = [
@@ -1033,7 +1010,7 @@
         "SingleLine2",
         "SingleLine4",
         "SingleLine6",
-        "SingleLine1",
+        "Dropdown4",
         "SingleLine3",
         "SingleLine5",
         "SingleLine7",
@@ -1043,7 +1020,7 @@
         "SingleLine9",
         "SingleLine10",
         "SingleLine12",
-        "SingleLine8",
+        "Dropdown5",
         "SingleLine11",
         "SingleLine13",
         "SingleLine16",
@@ -1061,7 +1038,7 @@
           street1: document.forms.form["SingleLine4"],
           street2: document.forms.form["SingleLine5"],
           state: document.forms.form["SingleLine6"],
-          country: document.forms.form["SingleLine1"],
+          country: document.forms.form["Dropdown4"],
           zip: document.forms.form["SingleLine7"],
         };
 
@@ -1071,7 +1048,7 @@
           street1: document.forms.form["SingleLine10"],
           street2: document.forms.form["SingleLine11"],
           state: document.forms.form["SingleLine12"],
-          country: document.forms.form["SingleLine8"],
+          country: document.forms.form["Dropdown5"],
           zip: document.forms.form["SingleLine13"],
         };
 
@@ -1319,7 +1296,7 @@ document.addEventListener("DOMContentLoaded", applyZusatzPositioning);
 window.addEventListener("resize", applyZusatzPositioning);
 </script>
 
-<script>
+<!-- <script>
 document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.getElementById("submitBtn");
   const requiredFields = [
@@ -1361,7 +1338,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-</script>
+</script> -->
 
   </body>
 </html>
