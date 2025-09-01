@@ -668,7 +668,7 @@
                     <div class="zf-clearBoth"></div>
                   </div>
                   <div class="zf-tempFrmWrapper zf-large">
-                    <label class="zf-labelName"> EOID </label>
+                    <label class="zf-labelName"> FID </label>
                     <div class="zf-tempContDiv">
                       <span>
                         <input
@@ -1175,7 +1175,9 @@
               <div class="zftwoColumn zfMultiColGrid">
                 <div class="zfCol">
                   <div class="zf-tempFrmWrapper zf-large">
-                    <label class="zf-labelName"> USt-ID </label>
+                    <label class="zf-labelName"> USt-ID 
+                      <em class="zf-important">*</em>
+                    </label>
                     <div class="zf-tempContDiv">
                       <span>
                         <input
@@ -1205,7 +1207,7 @@
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
                 Upload
-                <!-- <em class="zf-important">*</em> -->
+                <em class="zf-important">*</em>
               </label>
               <div class="zf-tempContDiv">
                 <input type="file" name="FileUpload" checktype="c1" />
@@ -1230,6 +1232,7 @@
                   <div class="zf-tempFrmWrapper zf-large">
                     <label class="zf-labelName">
                       Gewerbe- oder Handelsregisternummer
+                      <em class="zf-important">*</em>
                     </label>
                     <div class="zf-tempContDiv">
                       <span>
@@ -1260,7 +1263,7 @@
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
                 Upload
-                <!-- <em class="zf-important">*</em> -->
+                <em class="zf-important">*</em>
               </label>
               <div class="zf-tempContDiv">
                 <input type="file" name="FileUpload1" checktype="c1" />
@@ -1309,6 +1312,10 @@
         "Dropdown5",
         "SingleLine13",
         "DecisionBox2",
+        "SingleLine16",
+        "FileUpload",
+        "FileUpload1",
+        "SingleLine17",
       ];
       var zf_FieldArray = [
         "Name_First",
@@ -1610,13 +1617,14 @@ document.addEventListener("DOMContentLoaded", applyZusatzPositioning);
 window.addEventListener("resize", applyZusatzPositioning);
 </script>
 
-<!-- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.getElementById("submitBtn");
   const requiredFields = [
     "FileUpload",      // Final step file input 1
     "FileUpload1",     // Final step file input 2
-    // Add more required fields from final step if needed
+    "SingleLine16",
+    "SingleLine17",
   ];
 
   function checkRequiredFieldsFilled() {
@@ -1652,7 +1660,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-</script> -->
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const fidInput = document.forms.form["SingleLine3"];
+  const fidError = document.getElementById("SingleLine3_error");
+  const prefix = "QCBDR<1DE";
+
+  if (fidInput) {
+    
+    fidInput.value = prefix;
+
+    
+    fidInput.addEventListener("focus", function () {
+      setTimeout(() => {
+        fidInput.setSelectionRange(prefix.length, prefix.length);
+      }, 0);
+    });
+
+    fidInput.addEventListener("input", function () {
+      
+      if (!fidInput.value.startsWith(prefix)) {
+        fidInput.value = prefix;
+      }
+
+      
+      let digits = fidInput.value.slice(prefix.length).replace(/\D/g, "");
+
+      
+      digits = digits.slice(0, 12);
+
+      fidInput.value = prefix + digits;
+
+     
+      fidInput.setSelectionRange(fidInput.value.length, fidInput.value.length);
+    });
+  }
+
+  
+  const originalValidateStep = window.validateStep;
+  window.validateStep = function(stepIndex) {
+    let isValid = originalValidateStep(stepIndex);
+
+    const steps = document.querySelectorAll(".step");
+    const step = steps[stepIndex];
+
+    if (fidInput && step.contains(fidInput)) {
+      const digits = fidInput.value.slice(prefix.length);
+      if (digits.length !== 12) {
+        fidError.style.display = "block";
+        fidError.innerText = "FID must have exactly 12 digits after QCBDR<1DE";
+        isValid = false;
+      } else {
+        fidError.style.display = "none";
+      }
+    }
+
+    return isValid;
+  };
+});
+</script>
 
   </body>
 </html>
