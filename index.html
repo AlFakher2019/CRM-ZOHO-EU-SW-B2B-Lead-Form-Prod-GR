@@ -1,5 +1,12 @@
 <html>
   <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-THTJQDJQ');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Geschäftskonto erstellen DE</title>
@@ -22,6 +29,10 @@
     </style>
   </head>
   <body class="zf-backgroundBg">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THTJQDJQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
     <div class="zf-templateWidth">
       <form
@@ -1410,6 +1421,30 @@
 
         const steps = document.querySelectorAll(".step");
         let currentStep = 0;
+        const stepNames = ["Allgemein", "Adresse", "Geschaeftsdaten"];
+        const totalSteps = steps.length;
+
+        window.dataLayer = window.dataLayer || [];
+
+        // Timing
+        const formStartTime = Date.now();
+        let currentStepStartTime = formStartTime;
+        const stepDurations = {};
+
+        function pushFormEvent(eventName, stepIndex, extra) {
+          const payload = {
+            event: eventName,
+            form_id: "CreateaBusinessAccountDE1",
+            form_name: "Geschaeftskonto erstellen DE",
+            step_number: stepIndex + 1,
+            step_name: stepNames[stepIndex] || ("step_" + (stepIndex + 1)),
+            total_steps: totalSteps,
+          };
+          if (extra) {
+            Object.keys(extra).forEach(function (k) { payload[k] = extra[k]; });
+          }
+          window.dataLayer.push(payload);
+        }
 
         function showStep(index) {
           steps.forEach((step, i) => {
@@ -1424,13 +1459,38 @@
           if (benefitsBox) {
             benefitsBox.style.display = index === 0 ? "block" : "none";
           }
+
+          currentStepStartTime = Date.now();
+          pushFormEvent("form_step_view", index, {
+            total_form_time_ms: currentStepStartTime - formStartTime,
+          });
         }
         // next button functionality
         document.querySelectorAll(".next").forEach((btn) => {
           btn.addEventListener("click", () => {
-            if (validateStep(currentStep)) {
+            const stepAtClick = currentStep;
+            if (btn.type === "submit") {
+              // final submit handled by form submit listener
+              return;
+            }
+            const timeOnStep = Date.now() - currentStepStartTime;
+            if (validateStep(stepAtClick)) {
+              stepDurations[stepAtClick] =
+                (stepDurations[stepAtClick] || 0) + timeOnStep;
+              pushFormEvent("form_step_complete", stepAtClick, {
+                action: "next",
+                time_on_step_ms: timeOnStep,
+                cumulative_time_on_step_ms: stepDurations[stepAtClick],
+                total_form_time_ms: Date.now() - formStartTime,
+              });
               currentStep++;
               showStep(currentStep);
+            } else {
+              pushFormEvent("form_step_validation_failed", stepAtClick, {
+                action: "next",
+                time_on_step_ms: timeOnStep,
+                total_form_time_ms: Date.now() - formStartTime,
+              });
             }
           });
         });
@@ -1440,11 +1500,36 @@
         document.querySelectorAll(".prev").forEach((btn) => {
           btn.addEventListener("click", () => {
             if (currentStep > 0) {
+              const timeOnStep = Date.now() - currentStepStartTime;
+              stepDurations[currentStep] =
+                (stepDurations[currentStep] || 0) + timeOnStep;
+              pushFormEvent("form_step_back", currentStep, {
+                action: "prev",
+                time_on_step_ms: timeOnStep,
+                cumulative_time_on_step_ms: stepDurations[currentStep],
+                total_form_time_ms: Date.now() - formStartTime,
+              });
               currentStep--;
               showStep(currentStep);
             }
           });
         });
+
+        // Track final form submission
+        const formEl = document.getElementById("form");
+        if (formEl) {
+          formEl.addEventListener("submit", function () {
+            const timeOnStep = Date.now() - currentStepStartTime;
+            stepDurations[currentStep] =
+              (stepDurations[currentStep] || 0) + timeOnStep;
+            pushFormEvent("form_submit", currentStep, {
+              action: "submit",
+              time_on_step_ms: timeOnStep,
+              cumulative_time_on_step_ms: stepDurations[currentStep],
+              total_form_time_ms: Date.now() - formStartTime,
+            });
+          });
+        }
 
         // Show first step on load
         showStep(currentStep);
