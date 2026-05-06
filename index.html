@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="js/validation.js"></script>
+    <!-- Loqate Capture (address autocomplete) -->
+    <script type="text/javascript" src="https://services.postcodeanywhere.co.uk/js/address-3.91.min.js"></script>
     <style>
       .step {
         display: none;
@@ -25,7 +27,57 @@
       #step1 .prev {
         visibility: hidden;
       }
-     
+
+      /* Searchable country dropdown */
+      .searchable-select {
+        position: relative;
+      }
+      .searchable-select .searchable-input {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .searchable-select .searchable-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        max-height: 220px;
+        overflow-y: auto;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-top: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      }
+      .searchable-select .searchable-list li {
+        padding: 8px 10px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .searchable-select .searchable-list li:hover,
+      .searchable-select .searchable-list li.is-active {
+        background: #f1f3f5;
+      }
+      .searchable-select .searchable-list li.is-priority {
+        font-weight: 600;
+      }
+      .searchable-select .searchable-list li.priority-divider {
+        border-bottom: 1px solid #e0e0e0;
+        cursor: default;
+        padding: 0;
+        height: 0;
+      }
+      .searchable-select select.searchable-native {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      }
     </style>
   </head>
   <body class="zf-backgroundBg">
@@ -430,6 +482,7 @@
                         <input
                           type="text"
                           name="SingleLine2"
+                          id="billing-city"
                           checktype="c1"
                           value=""
                           maxlength="255"
@@ -457,6 +510,7 @@
                         <input
                           type="text"
                           name="SingleLine4"
+                          id="billing-street1"
                           checktype="c1"
                           value=""
                           maxlength="255"
@@ -484,6 +538,7 @@
                         <input
                           type="text"
                           name="SingleLine6"
+                          id="billing-state"
                           checktype="c0"
                           value=""
                           maxlength="255"
@@ -509,8 +564,10 @@
                       <em class="zf-important"> *</em>
                     </label>
                   <div class="zf-tempContDiv">
-                    <select class="zf-form-sBox" name="Dropdown4" checktype="c1">
-                      <option selected="true" value="-Select-">Select an option</option>
+                    <select class="zf-form-sBox" name="Dropdown4" id="billing-country" checktype="c1">
+                      <option value="-Select-">Select an option</option>
+                      <option value="DEU" selected="true">Germany</option>
+                      <option value="AUT">Austria</option>
                       <option value="ALA">Åland Islands</option>
                         <option value="ASM">American Samoa</option>
                         <option value="AND">Andorra</option>
@@ -518,7 +575,6 @@
                         <option value="ARG">Argentina</option>
                         <option value="ARM">Armenia</option>
                         <option value="ABW">Aruba</option>
-                        <option value="AUT">Austria</option>
                         <option value="BHS">The Bahamas</option>
                         <option value="BHR">Bahrain</option>
                         <option value="BGD">Bangladesh</option>
@@ -558,7 +614,6 @@
                         <option value="FJI">Fiji</option>
                         <option value="FIN">Finland</option>
                         <option value="GEO">Georgia</option>
-                        <option value="DEU">Germany</option>
                         <option value="GIB">Gibraltar</option>
                         <option value="GRC">Greece</option>
                         <option value="GRL">Greenland</option>
@@ -685,11 +740,12 @@
                         <input
                           type="text"
                           name="SingleLine3"
+                          id="fid-tracktrace"
                           checktype="c1"
-                          value=""
+                          value="QCBDR<1DE"
                           maxlength="255"
                           fieldType="1"
-                          placeholder=""
+                          placeholder="Bitte fügen Sie die letzten 8 Ziffern hinzu"
                         />
                       </span>
                       <p
@@ -709,6 +765,7 @@
                         <input
                           type="text"
                           name="SingleLine5"
+                          id="billing-street2"
                           checktype="c1"
                           value=""
                           maxlength="255"
@@ -736,6 +793,7 @@
                         <input
                           type="text"
                           name="SingleLine7"
+                          id="billing-postcode"
                           checktype="c1"
                           value=""
                           maxlength="255"
@@ -831,6 +889,7 @@
                           <input
                             type="text"
                             name="SingleLine9"
+                            id="shipping-city"
                             checktype="c1"
                             value=""
                             maxlength="255"
@@ -858,6 +917,7 @@
                           <input
                             type="text"
                             name="SingleLine10"
+                            id="shipping-street1"
                             checktype="c1"
                             value=""
                             maxlength="255"
@@ -885,6 +945,7 @@
                           <input
                             type="text"
                             name="SingleLine12"
+                            id="shipping-state"
                             checktype="c0"
                             value=""
                             maxlength="255"
@@ -910,8 +971,9 @@
                         <em class="zf-important"> *</em>
                       </label>
                       <div class="zf-tempContDiv">
-                        <select class="zf-form-sBox" name="Dropdown5" checktype="c1">
-                          <option selected="true" value="-Select-">Select an Option</option>
+                        <select class="zf-form-sBox" name="Dropdown5" id="shipping-country" checktype="c1">
+                          <option value="-Select-">Select an Option</option>
+                        <option value="DEU" selected="true">Germany</option>
                         <option value="AUT">Austria</option>
                         <option value="BEL">Belgium</option>
                         <option value="BGR">Bulgaria</option>
@@ -921,7 +983,6 @@
                         <option value="EST">Estonia</option>
                         <option value="FIN">Finland</option>
                         <option value="FRA">France</option>
-                        <option value="DEU">Germany</option>
                         <option value="GRC">Greece</option>
                         <option value="HUN">Hungary</option>
                         <option value="IRL">Ireland</option>
@@ -976,6 +1037,7 @@
                           <input
                             type="text"
                             name="SingleLine11"
+                            id="shipping-street2"
                             checktype="c1"
                             value=""
                             maxlength="255"
@@ -1003,6 +1065,7 @@
                           <input
                             type="text"
                             name="SingleLine13"
+                            id="shipping-postcode"
                             checktype="c1"
                             value=""
                             maxlength="255"
@@ -1655,57 +1718,26 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const fidInput = document.forms.form["SingleLine3"];
   const fidError = document.getElementById("SingleLine3_error");
-  const prefix = "QCBDR<1DE";
+  if (!fidInput) return;
 
-  if (fidInput) {
-    
-    fidInput.value = prefix;
-
-    
-    fidInput.addEventListener("focus", function () {
-      setTimeout(() => {
-        fidInput.setSelectionRange(prefix.length, prefix.length);
-      }, 0);
-    });
-
-    fidInput.addEventListener("input", function () {
-      
-      if (!fidInput.value.startsWith(prefix)) {
-        fidInput.value = prefix;
-      }
-
-      
-      let digits = fidInput.value.slice(prefix.length).replace(/\D/g, "");
-
-      
-      digits = digits.slice(0, 12);
-
-      fidInput.value = prefix + digits;
-
-     
-      fidInput.setSelectionRange(fidInput.value.length, fidInput.value.length);
-    });
-  }
-
-  
   const originalValidateStep = window.validateStep;
-  window.validateStep = function(stepIndex) {
-    let isValid = originalValidateStep(stepIndex);
-
+  window.validateStep = function (stepIndex) {
+    let isValid = originalValidateStep ? originalValidateStep(stepIndex) : true;
     const steps = document.querySelectorAll(".step");
     const step = steps[stepIndex];
-
-    if (fidInput && step.contains(fidInput)) {
-      const digits = fidInput.value.slice(prefix.length);
-      if (digits.length !== 12) {
-        fidError.style.display = "block";
-        fidError.innerText = "FID must have exactly 12 digits after QCBDR<1DE";
-        isValid = false;
-      } else {
-        fidError.style.display = "none";
+    if (step && step.contains(fidInput)) {
+      const value = fidInput.value.trim();
+      if (value.length > 0) {
+        const digitCount = (value.match(/\d/g) || []).length;
+        if (digitCount < 8) {
+          fidError.style.display = "block";
+          fidError.innerText = "Bitte geben Sie mindestens 8 Ziffern ein.";
+          isValid = false;
+        } else {
+          fidError.style.display = "none";
+        }
       }
     }
-
     return isValid;
   };
 });
@@ -1803,6 +1835,171 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+</script>
+
+<!-- Searchable country dropdowns + Loqate Capture + DE billing/shipping force -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // ---------- Searchable combobox over a <select> ----------
+  // Wraps the existing <select> so Zoho's mandatory check (which reads
+  // selectedIndex/value) keeps working unchanged. The native select is hidden;
+  // a text input + filtered list drive selection and dispatch a 'change' event.
+  function makeSearchableSelect(selectEl, opts) {
+    if (!selectEl || selectEl.dataset.searchableInit === "1") return;
+    selectEl.dataset.searchableInit = "1";
+
+    const priority = (opts && opts.priority) || []; // e.g. ["DEU","AUT"]
+    selectEl.classList.add("searchable-native");
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "searchable-select";
+    selectEl.parentNode.insertBefore(wrapper, selectEl);
+    wrapper.appendChild(selectEl);
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "searchable-input zf-form-sBox";
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("placeholder", "Suchen...");
+
+    const list = document.createElement("ul");
+    list.className = "searchable-list";
+
+    wrapper.appendChild(input);
+    wrapper.appendChild(list);
+
+    function visibleOptions() {
+      return Array.from(selectEl.options).filter(o => o.value && o.value !== "-Select-");
+    }
+
+    function syncInputFromSelect() {
+      const sel = selectEl.options[selectEl.selectedIndex];
+      input.value = sel && sel.value && sel.value !== "-Select-" ? sel.text : "";
+    }
+
+    function rebuildList(filter) {
+      list.innerHTML = "";
+      const f = (filter || "").trim().toLowerCase();
+      const all = visibleOptions();
+      const prio = all.filter(o => priority.indexOf(o.value) !== -1);
+      const rest = all.filter(o => priority.indexOf(o.value) === -1);
+      const ordered = prio.concat(rest);
+      const matched = ordered.filter(o => !f || o.text.toLowerCase().indexOf(f) !== -1);
+
+      matched.forEach((opt, idx) => {
+        const li = document.createElement("li");
+        li.textContent = opt.text;
+        li.dataset.value = opt.value;
+        if (priority.indexOf(opt.value) !== -1) li.classList.add("is-priority");
+        // Divider after the priority block
+        li.addEventListener("mousedown", function (e) {
+          e.preventDefault(); // fire before blur
+          selectEl.value = opt.value;
+          input.value = opt.text;
+          list.style.display = "none";
+          selectEl.dispatchEvent(new Event("change", { bubbles: true }));
+        });
+        list.appendChild(li);
+        const isLastPriority =
+          priority.indexOf(opt.value) !== -1 &&
+          (matched[idx + 1] && priority.indexOf(matched[idx + 1].value) === -1);
+        if (isLastPriority) {
+          const sep = document.createElement("li");
+          sep.className = "priority-divider";
+          list.appendChild(sep);
+        }
+      });
+    }
+
+    input.addEventListener("focus", function () {
+      rebuildList("");
+      list.style.display = "block";
+    });
+    input.addEventListener("input", function () {
+      rebuildList(input.value);
+      list.style.display = "block";
+    });
+    input.addEventListener("blur", function () {
+      // delay so click on an <li> registers
+      setTimeout(function () {
+        list.style.display = "none";
+        syncInputFromSelect();
+      }, 180);
+    });
+
+    // External changes (e.g. checkbox sync, DEU forcing) reflect into the input
+    selectEl.addEventListener("change", syncInputFromSelect);
+
+    syncInputFromSelect();
+  }
+
+  const billingCountry = document.forms.form["Dropdown4"];
+  const shippingCountry = document.forms.form["Dropdown5"];
+  makeSearchableSelect(billingCountry, { priority: ["DEU", "AUT"] });
+  makeSearchableSelect(shippingCountry, { priority: ["DEU", "AUT"] });
+
+  // ---------- Force shipping = Germany when billing = Germany ----------
+  // Applies regardless of "wie Rechnungsadresse" checkbox. Only Germany.
+  function forceShippingGermanyIfBillingGermany() {
+    if (billingCountry.value !== "DEU") return;
+    const hasDEU = Array.from(shippingCountry.options).some(o => o.value === "DEU");
+    if (!hasDEU) {
+      const opt = document.createElement("option");
+      opt.value = "DEU";
+      opt.text = "Germany";
+      shippingCountry.add(opt, shippingCountry.options[1] || null);
+    }
+    if (shippingCountry.value !== "DEU") {
+      shippingCountry.value = "DEU";
+      shippingCountry.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
+  billingCountry.addEventListener("change", forceShippingGermanyIfBillingGermany);
+  // Run after the existing checkbox handler (which can wipe shipping country to "")
+  document.getElementById("DecisionBox").addEventListener("change", function () {
+    setTimeout(forceShippingGermanyIfBillingGermany, 0);
+  });
+  // Initial run (Germany is the default in billing)
+  forceShippingGermanyIfBillingGermany();
+
+  // ---------- Loqate Capture (address autocomplete) ----------
+  // Replace YOUR_LOQATE_API_KEY with your live Loqate Capture key.
+  var LOQATE_KEY = "YOUR_LOQATE_API_KEY";
+
+  function initLoqate(prefix, countrySelect) {
+    if (typeof pca === "undefined" || !pca.Address) return;
+    var fields = [
+      { element: prefix + "-street1", field: "Line1",        mode: pca.fieldMode.SEARCH   },
+      { element: prefix + "-street2", field: "Line2",        mode: pca.fieldMode.POPULATE },
+      { element: prefix + "-city",    field: "City",         mode: pca.fieldMode.POPULATE },
+      { element: prefix + "-postcode",field: "PostalCode",   mode: pca.fieldMode.POPULATE },
+      { element: prefix + "-state",   field: "ProvinceName", mode: pca.fieldMode.POPULATE }
+    ];
+    var options = {
+      key: LOQATE_KEY,
+      search: { countries: countrySelect.value || "DEU,AUT" },
+      bar: { showCountry: false, showLogo: false }
+    };
+    var control = new pca.Address(fields, options);
+    // Re-bias country filter when the country dropdown changes
+    countrySelect.addEventListener("change", function () {
+      if (control && control.setCountry) {
+        control.setCountry(countrySelect.value || "");
+      }
+    });
+    // After Loqate populates, fire change events so any downstream listeners pick up
+    control.listen("populate", function () {
+      [prefix + "-street1", prefix + "-street2", prefix + "-city",
+       prefix + "-postcode", prefix + "-state"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+  }
+
+  initLoqate("billing", billingCountry);
+  initLoqate("shipping", shippingCountry);
+});
 </script>
   </body>
 </html>
