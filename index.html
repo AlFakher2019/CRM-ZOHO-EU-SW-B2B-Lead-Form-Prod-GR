@@ -1488,25 +1488,20 @@
         const totalSteps = steps.length;
 
         window.dataLayer = window.dataLayer || [];
+        const zfFormName = "Geschaeftskonto erstellen DE";
 
-        // Timing
-        const formStartTime = Date.now();
-        let currentStepStartTime = formStartTime;
-        const stepDurations = {};
+        // Fires once when the form has loaded.
+        window.dataLayer.push({ event: "zf_formview", zf_formname: zfFormName });
 
-        function pushFormEvent(eventName, stepIndex, extra) {
-          const payload = {
-            event: eventName,
-            form_id: "CreateaBusinessAccountDE1",
-            form_name: "Geschaeftskonto erstellen DE",
-            step_number: stepIndex + 1,
-            step_name: stepNames[stepIndex] || ("step_" + (stepIndex + 1)),
-            total_steps: totalSteps,
-          };
-          if (extra) {
-            Object.keys(extra).forEach(function (k) { payload[k] = extra[k]; });
-          }
-          window.dataLayer.push(payload);
+        // Fires when a step passed validation and the user advanced.
+        // zf_step is 1-based and a NUMBER (not a string).
+        function pushStepComplete(stepIndex) {
+          window.dataLayer.push({
+            event: "zf_step_complete",
+            zf_formname: zfFormName,
+            zf_step: stepIndex + 1,
+            zf_stepname: stepNames[stepIndex] || ("step_" + (stepIndex + 1)),
+          });
         }
 
         function showStep(index) {
@@ -1523,37 +1518,21 @@
             benefitsBox.style.display = index === 0 ? "block" : "none";
           }
 
-          currentStepStartTime = Date.now();
-          pushFormEvent("form_step_view", index, {
-            total_form_time_ms: currentStepStartTime - formStartTime,
-          });
         }
         // next button functionality
         document.querySelectorAll(".next").forEach((btn) => {
           btn.addEventListener("click", () => {
             const stepAtClick = currentStep;
             if (btn.type === "submit") {
-              // final submit handled by form submit listener
+              // final submit + generate_lead handled by the form submit listener
               return;
             }
-            const timeOnStep = Date.now() - currentStepStartTime;
+            // Only push when the step passed validation.
+            // Clicking Next on an invalid/empty step pushes nothing at all.
             if (validateStep(stepAtClick)) {
-              stepDurations[stepAtClick] =
-                (stepDurations[stepAtClick] || 0) + timeOnStep;
-              pushFormEvent("form_step_complete", stepAtClick, {
-                action: "next",
-                time_on_step_ms: timeOnStep,
-                cumulative_time_on_step_ms: stepDurations[stepAtClick],
-                total_form_time_ms: Date.now() - formStartTime,
-              });
+              pushStepComplete(stepAtClick);
               currentStep++;
               showStep(currentStep);
-            } else {
-              pushFormEvent("form_step_validation_failed", stepAtClick, {
-                action: "next",
-                time_on_step_ms: timeOnStep,
-                total_form_time_ms: Date.now() - formStartTime,
-              });
             }
           });
         });
@@ -1563,34 +1542,44 @@
         document.querySelectorAll(".prev").forEach((btn) => {
           btn.addEventListener("click", () => {
             if (currentStep > 0) {
-              const timeOnStep = Date.now() - currentStepStartTime;
-              stepDurations[currentStep] =
-                (stepDurations[currentStep] || 0) + timeOnStep;
-              pushFormEvent("form_step_back", currentStep, {
-                action: "prev",
-                time_on_step_ms: timeOnStep,
-                cumulative_time_on_step_ms: stepDurations[currentStep],
-                total_form_time_ms: Date.now() - formStartTime,
-              });
               currentStep--;
               showStep(currentStep);
             }
           });
         });
 
-        // Track final form submission
+        // Final submit: fire step 3 complete + generate_lead (THE CONVERSION), and let GTM
+        // tags fire before the form navigates to Zoho. Capped at 2s so a blocked or slow GTM
+        // can never stop a real lead from submitting.
         const formEl = document.getElementById("form");
         if (formEl) {
-          formEl.addEventListener("submit", function () {
-            const timeOnStep = Date.now() - currentStepStartTime;
-            stepDurations[currentStep] =
-              (stepDurations[currentStep] || 0) + timeOnStep;
-            pushFormEvent("form_submit", currentStep, {
-              action: "submit",
-              time_on_step_ms: timeOnStep,
-              cumulative_time_on_step_ms: stepDurations[currentStep],
-              total_form_time_ms: Date.now() - formStartTime,
+          let leadSubmitted = false;
+          formEl.addEventListener("submit", function (e) {
+            if (leadSubmitted) return;        // let the programmatic re-submit pass through
+            if (e.defaultPrevented) return;   // zf_ValidateAndSubmit() failed -> not a real submit
+
+            e.preventDefault();               // hold navigation while the lead tag fires
+            pushStepComplete(totalSteps - 1); // step 3 (Geschaeftsdaten) completed
+
+            let submitted = false;
+            function doSubmit() {
+              if (submitted) return;
+              submitted = true;
+              leadSubmitted = true;
+              // Use the prototype method: formEl.submit is shadowed by the
+              // submit button named "submit".
+              HTMLFormElement.prototype.submit.call(formEl);
+            }
+
+            window.dataLayer.push({
+              event: "generate_lead",
+              zf_formname: zfFormName,
+              eventCallback: doSubmit,
+              eventTimeout: 2000,
             });
+
+            // Safety net: submit anyway if GTM never calls back.
+            setTimeout(doSubmit, 2000);
           });
         }
 
